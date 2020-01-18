@@ -17,7 +17,7 @@ RSpec.describe UserInitializer, type: :model do
     end
 
     it 'has password' do
-      expect(user.password).to eq('password')
+      expect(subject.password).to eq('password')
     end
 
     it 'has projects' do
@@ -25,8 +25,8 @@ RSpec.describe UserInitializer, type: :model do
     end
 
     it 'has user_setting' do
-      expect(subject.user_setting.receive_weekly_report).to eq(true)
-      expect(subject.user_setting.receive_monthly_report).to eq(true)
+      expect(subject.user_setting.receive_week_report).to eq(true)
+      expect(subject.user_setting.receive_month_report).to eq(true)
     end
   end
 end

@@ -19,8 +19,14 @@ RSpec.describe ReportMailerJob, type: :job do
     end
 
     context 'when period is week' do
-      let(:user) { create(:user) }
       let(:args) { [{ 'period' => 'week' }] }
+
+      let(:user) do
+        create(
+          :user_setting,
+          receive_week_report: true
+        ).user
+      end
 
       before do
         create(
@@ -41,8 +47,14 @@ RSpec.describe ReportMailerJob, type: :job do
     end
 
     context 'when period is month' do
-      let(:user) { create(:user) }
       let(:args) { [{ 'period' => 'month' }] }
+
+      let(:user) do
+        create(
+          :user_setting,
+          receive_month_report: true
+        ).user
+      end
 
       before do
         create(
@@ -63,8 +75,14 @@ RSpec.describe ReportMailerJob, type: :job do
     end
 
     context 'when target user is multiple' do
-      let(:users) { create_list(:user, 2) }
       let(:args) { [{ 'period' => 'week' }] }
+
+      let(:users) do
+        create_list(
+          :user_setting, 2,
+          receive_week_report: true
+        ).map(&:user)
+      end
 
       before do
         create(
@@ -92,8 +110,14 @@ RSpec.describe ReportMailerJob, type: :job do
     end
 
     context 'when user does not have activities' do
-      let(:user) { create(:user) }
       let(:args) { [{ 'period' => 'week' }] }
+
+      let(:user) do
+        create(
+          :user_setting,
+          receive_week_report: true
+        ).user
+      end
 
       before do
         perform_enqueued_jobs do
@@ -107,8 +131,14 @@ RSpec.describe ReportMailerJob, type: :job do
     end
 
     context 'when user has activities but working' do
-      let(:user) { create(:user) }
       let(:args) { [{ 'period' => 'week' }] }
+
+      let(:user) do
+        create(
+          :user_setting,
+          receive_week_report: true
+        ).user
+      end
 
       before do
         create(

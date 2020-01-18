@@ -5,7 +5,7 @@ FactoryBot.define do
     receive_week_report { Faker::Boolean.boolean }
     receive_month_report { Faker::Boolean.boolean }
 
-    after(:build) do |user_settings|
+    after(:build) do |user_setting|
       user_setting.user ||= build(:user, user_setting: user_setting)
     end
   end

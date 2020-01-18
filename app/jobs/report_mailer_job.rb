@@ -39,7 +39,7 @@ class ReportMailerJob < ApplicationJob
   def opt_in_users(period)
     User.joins(:user_setting)
         .where(user_settings: {
-          "receive_#{period}_report": true
-        })
+                 "receive_#{period}_report": true
+               })
   end
 end

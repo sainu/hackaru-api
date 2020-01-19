@@ -16,7 +16,7 @@ module V1
     def user_setting_params
       params.require(:user_setting).permit(
         :receive_week_report,
-        :receive_month_report,
+        :receive_month_report
       )
     end
   end

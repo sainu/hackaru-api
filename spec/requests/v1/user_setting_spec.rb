@@ -15,7 +15,7 @@ RSpec.describe 'V1::UserSetting', type: :request do
     end
 
     before do
-      put "/v1/user_setting",
+      put '/v1/user_setting',
           headers: access_token_header(user_setting.user),
           params: params
     end

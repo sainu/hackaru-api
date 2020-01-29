@@ -12,16 +12,25 @@ RSpec.describe 'V1::Activities', type: :request do
     end
 
     before do
-      get '/v1/activities',
+      get "/v1/activities#{extension}",
           headers: access_token_header,
           params: params
     end
 
-    context 'when params are correctly' do
+    context 'when extension is empty' do
+      let(:extension) { '' }
       it { expect(response).to have_http_status(200) }
+      it { expect(response.content_type).to include('application/json') }
+    end
+
+    context 'when extension is csv' do
+      let(:extension) { '.csv' }
+      it { expect(response).to have_http_status(200) }
+      it { expect(response.content_type).to include('text/csv') }
     end
 
     context 'when params are missing' do
+      let(:extension) { '' }
       let(:params) { {} }
       it { expect(response).to have_http_status(422) }
     end
